@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+#define ln "\n"
 
 class Node{
 
@@ -202,6 +203,8 @@ public:
     }
     //Function for reverse the Linked List
     void reverse(){
+        if (head == nullptr) return;
+
         Node* temp = head;
         tail = temp;
 
@@ -216,17 +219,65 @@ public:
         head = before;
     }
 
+    Node* findMiddleNode(){
+            Node* fast = head;
+            Node* slow = head;
+            while (fast != nullptr && fast->next != nullptr){
+                slow = slow->next;
+                fast = fast->next->next;
+            }
+            return slow;
+        }
+
+    bool hasLoop(){
+        Node* fast = head;
+        Node* slow = head;
+
+        while (fast != nullptr && fast->next != nullptr){
+            slow = slow->next;
+            fast = fast->next->next;
+            if (fast == slow){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    Node* findKthFromEnd(int k){
+        Node* fast = head;
+        Node* slow = head;
+
+        int counter = 1;
+
+        for (int i=0; fast != tail && fast->next != nullptr; i++){
+            fast=fast->next;
+            counter++;
+        }
+
+        counter -= k;
+        if (k<0 || counter<0){
+            return nullptr;
+        }
+        else{
+            for (int j = 0; j<counter; j++){
+            slow = slow->next;
+        }
+        return slow;
+        }
+        
+    }
+
 };
 
 int main(){
-    LinkedList* newLinkedList = new LinkedList(4);
+    LinkedList* newLinkedList = new LinkedList(3);
 
     newLinkedList->getHead();
     newLinkedList->getTail();
     newLinkedList->getLength();
 
-    newLinkedList->append(5);
-    newLinkedList->append(6);
+    newLinkedList->append(1);
+    newLinkedList->append(2);
 
     cout << "----------------------------------PRINT LIST----------------------------------" <<endl;
     newLinkedList->printList();
@@ -236,8 +287,11 @@ int main(){
     newLinkedList->printList();
 
     cout << "----------------------------------Test of the function prepend----------------------------------" << endl;
-    newLinkedList->prepend(7);
-    newLinkedList->prepend(5);
+    newLinkedList->append(2);
+    newLinkedList->append(3);
+    newLinkedList->append(4);
+    newLinkedList->append(5);
+    newLinkedList->append(6);
     newLinkedList->printList();
 
     cout << "----------------------------------Test of the function deleteFirst----------------------------------" << endl;
@@ -247,21 +301,38 @@ int main(){
     cout << "----------------------------------Test of the function Get----------------------------------" << endl;
     cout << newLinkedList->get(1)->value <<endl;
 
-    cout << "----------------------------------Test of the function Set----------------------------------" << endl;
-    newLinkedList->set(1, 100);
-    newLinkedList->printList();
+    //cout << "----------------------------------Test of the function Set----------------------------------" << endl;
+    //newLinkedList->set(1, 2);
+    //newLinkedList->printList();
 
+    /*
     cout << "----------------------------------Test of the function insert----------------------------------" << endl;
-    newLinkedList->insert(1, 50);
+    newLinkedList->insert(3, 4);
     newLinkedList->printList();
+    */
 
+    /*
     cout << "----------------------------------Test of the function delete----------------------------------" << endl;
     newLinkedList->deleteNode(1);
     newLinkedList->printList();
+    */
 
+    /*
     cout << "----------------------------------Test of the function reverse----------------------------------" << endl;
     newLinkedList->reverse();
     newLinkedList->printList();
+    */
+
+    cout << "----------------------------------Test of the function findMiddleNode----------------------------------" << endl;
+    cout << newLinkedList->findMiddleNode()->value << ln;
+
+    cout << "----------------------------------Test of the function hasLoop----------------------------------" << endl;
+    cout << boolalpha;
+    cout << newLinkedList->hasLoop() << ln;
+
+    cout << "----------------------------------Test of the function findKthFromEnd----------------------------------" << endl;
+    cout << newLinkedList->findKthFromEnd(6)->value << ln;
+
     
 
 }

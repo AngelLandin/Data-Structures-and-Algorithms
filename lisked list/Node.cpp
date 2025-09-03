@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+#define ln "\n"
 
 class Node {
     public:
@@ -208,7 +209,15 @@ class LinkedList{
             }
         }
 
-
+        Node* findMiddleNode(){
+            Node* fast = head;
+            Node* slow = head;
+            while (fast != nullptr && fast->next != nullptr){
+                slow = slow->next;
+                fast = fast->next->next;
+            }
+            return slow;
+        }
 
 };
 
@@ -218,13 +227,19 @@ int main(){
     myLinkedList->append(3);
     myLinkedList->append(4);
     myLinkedList->append(5);
+    myLinkedList->append(6);
+    myLinkedList->append(7);
+    myLinkedList->append(8);
 
     myLinkedList->printList();
 
+    /*
     cout << "------------------INVERTIMOS LA LISTA ENLAZADA--------------"<<endl;
     myLinkedList->reverse();
     myLinkedList->printList();
+    */
 
-
+    cout << "------------------FIND MIDDLE NODE--------------"<<endl;
+    cout << myLinkedList->findMiddleNode()->value << ln;
     return 0;
 }
