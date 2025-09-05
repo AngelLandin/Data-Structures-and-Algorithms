@@ -25,8 +25,6 @@ int maxArea(vector<int>& height) {
 
 int main(){
 
-    vector
-    maxArea
 
     return 0;
 

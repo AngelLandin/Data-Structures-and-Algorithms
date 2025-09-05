@@ -27,6 +27,8 @@ vector<int> sem(vector<int>& nums, int target){
     return result;
 }
 
+//Funcion con complexity O(n^2)
+/*
 vector<int> semTwo(vector<int>& numeros, int target){
     int size = numeros.size();
     vector<int> resultado = {};
@@ -42,7 +44,7 @@ vector<int> semTwo(vector<int>& numeros, int target){
     }
     return resultado;
 }
-
+*/
 
 int main(){
     vector<int> nums = {-5, 2, 3, 4, 6};
