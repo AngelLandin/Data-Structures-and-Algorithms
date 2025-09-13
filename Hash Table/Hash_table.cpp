@@ -38,6 +38,8 @@ class HashTable{
             }
          }
 
+        
+
         int hash(string key){
             int hash = 0;
             int prime = 23;
