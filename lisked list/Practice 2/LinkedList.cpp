@@ -2,7 +2,7 @@
 using namespace std;
 #define ln "\n"
 
-class Node{
+struct Node{
 
 public:
     int value;
